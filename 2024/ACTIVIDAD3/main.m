@@ -17,17 +17,31 @@ Dataset=rand(muestras, variables);
 %% Graficar el dataset
 figure %no sobrescribe la anterior grafica
 
-subplot(1,2,1)
+subplot(2,2,1)
 plot(Dataset(:,2:3));%
 title("Datos aleatorios");
 xlabel("muestras");
 ylabel("valor");
 legend(vname(2:3))
 
-subplot(1,2,2)
+subplot(2,2,2)
 plot(Dataset(:,[1,4,5]));
 title("Datos aleatorios");
 xlabel("muestras");
 ylabel("valor");
 legend(vname([1,4,5]))
+
+subplot(2,2,3)
+plot(Dataset(:,3:5));%
+title("Datos aleatorios");
+xlabel("muestras");
+ylabel("valor");
+legend(vname(3:5))
+
+subplot(2,2,4)
+plot(Dataset(:,[1]));
+title("Datos aleatorios");
+xlabel("muestras");
+ylabel("valor");
+legend(vname([1]))
 %clear
