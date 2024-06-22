@@ -5,6 +5,7 @@
 % - Programacion estructura
 
 % Nombre: sunombre
+% Reposiitory: https://github.com/vasanza/SSE
 
 % Limpiar variables y linea de comandos
 clear%para borrar el workspace y liberar memoria RAM
