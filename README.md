@@ -10,7 +10,7 @@
 # Keynote
 ## Clone
 - git status
-- git clone https://github.com/vasanza/SSE
+- git clone https://github.com/vasanza/SSE.git
 ## Switched to Branch
 - git branch -a
 - git checkout NameBranch
