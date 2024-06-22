@@ -2,7 +2,6 @@
 
 % Objetivos:
 % - Aprender a crear funciones, una para escibir archivos
-% - Programacion estructura
 
 % Nombre: sunombre
 % Reposiitory: https://github.com/vasanza/SSE
@@ -29,16 +28,7 @@ ylabel("valor");
 legend(vname(1:4))
 
 %% Guardar los carchivos VSC en el computador
-
-% Este es el codigo que usaremos para crear la funcion
-v1=Dataset(:,1);
-v2=Dataset(:,2);
-
-fileID = fopen('Data2.csv','w'); %Crear un archivo y abrirlo
-for i=1:1:length(Dataset)
-    fprintf(fileID,'%d %d\n','v1','v2');%escribir linea a linea
-end
-fclose(fileID);%cerrar el archivo
-
+filename = 'Data3.csv';
+fSave_file(filename,Dataset)
 
 %clear
