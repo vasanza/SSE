@@ -39,9 +39,9 @@ ylabel("valor");
 legend(vname(3:5))
 
 subplot(2,2,4)
-plot(Dataset(:,[1]));
-title("Datos aleatorios");
-xlabel("muestras");
-ylabel("valor");
-legend(vname([1]))
+%plot(Dataset(:,[1]));
+%title("Datos aleatorios");
+%xlabel("muestras");
+%ylabel("valor");
+%legend(vname([1]))
 %clear
