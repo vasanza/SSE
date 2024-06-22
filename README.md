@@ -1,7 +1,11 @@
 # SSE
 
+## Dataset
 - [Link Dataset](https://openei.org/datasets/files/961/pub/COMMERCIAL_LOAD_DATA_E_PLUS_OUTPUT/)
+## Software
 - [Link Matlab online](https://matlab.mathworks.com/)
+- [Git Bush](https://git-scm.com/download/win)
+- [Notepad ++](https://notepad-plus-plus.org/downloads/)
 
 # Keynote
 ## Clone
