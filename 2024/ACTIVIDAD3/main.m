@@ -1,5 +1,7 @@
 % Actividad #3
-% Objetivo: Graficar con subplot y guardarlos
+% Objetivos:
+% - Graficar con subplot
+% - Guardar archivo del dataset CSV
 % Nombre: sunombre
 
 % Limpiar variables y linea de comandos
@@ -10,6 +12,7 @@ clc %limpiar el command window
 % En todo dataset las filas son muestras y las comlumnas son variables
 variables=5; %Columnas
 vname=["Corriente","Voltaje","variable3","variable4","variable5"];
+%Tarea ----------------- modificar el numero de muestras del dataset
 muestras=1000; %Filas
 Dataset=rand(muestras, variables);
 %matriz de muestras (filas) x variables (columnas)
@@ -31,17 +34,21 @@ xlabel("muestras");
 ylabel("valor");
 legend(vname([1,4,5]))
 
-subplot(2,2,3)
+subplot(1,2,3)
 plot(Dataset(:,3:5));%
 title("Datos aleatorios");
 xlabel("muestras");
 ylabel("valor");
 legend(vname(3:5))
 
-subplot(2,2,4)
-%plot(Dataset(:,[1]));
-%title("Datos aleatorios");
-%xlabel("muestras");
-%ylabel("valor");
-%legend(vname([1]))
+subplot(1,2,4)
+plot(Dataset(:,[1]));
+title("Datos aleatorios");
+xlabel("muestras");
+ylabel("valor");
+legend(vname([1]))
 %clear
+
+%% Guardar los carchivos VSC en el computador
+writematrix(Dataset,'Dataset.csv')
+clear
