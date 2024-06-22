@@ -1,5 +1,8 @@
 # SSE
 
+- [Link Dataset](https://notepad-plus-plus.org/downloads/)
+- [Link Matlab online](https://matlab.mathworks.com/)
+
 # Keynote
 ## Clone
 - git status
