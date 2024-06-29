@@ -16,7 +16,8 @@
 
 function fPlot(Datos,VariableName,EstilosLinea)
     figure %no sobrescribe la anterior grafica
-    nvar=size(Datos,2);
+    nvar=size(Datos,2);%Contar el maximo de columnas o variables
+    
     for i=1:1:nvar %Para acceder a cada variable
         plot(Datos(:,nvar),EstilosLinea(i));
         hold on
