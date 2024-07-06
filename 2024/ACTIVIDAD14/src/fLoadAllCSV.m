@@ -1,0 +1,46 @@
+% Funcion que retorna matriz 3D con los datos de todos los clientes
+% pero se asume que hay una carpeta por cliente dengro de data.
+% input (datapath): Direccion donde de la carpeta data, donde 
+%                   estan los clientes como carpetas y dentro de cada 
+%                   carpeta hay archivos .CSV
+% input (SiEsPC): string "true" o "false"
+%                 "true" si es Matlab para PC
+%                 "flase" si es Matlab Online
+% output (AllData): matriz de 3 dimensiones, filas x variables x clientes
+% Example: 
+%   datapath=fullfile('./data/');
+%   SiEsPC = "true"; % "true" = PC / "false" = online
+%   AllData = fLoadAllCSV(datapath,SiEsPC);
+% Requirements:
+%   fLoadCSV.m
+% More examples: https://github.com/vasanza/Matlab_Code
+% Read more: https://vasanza.blogspot.com/
+function [AllData] = fLoadAllCSV(datapath,SiEsPC)
+    FolderNames=ls(datapath); %Matlab: enliastar todas las carpetas dentro de data
+    
+    if SiEsPC=="false" %Solo para la version online
+        FolderNames=split(FolderNames); %Cmabia un string a un vector de celadas
+        FolderNames=string(FolderNames); %Cmabia un string a un vector de celadas
+    end
+    
+    if SiEsPC=="true"
+        FolderNames=FolderNames(3:size(FolderNames,1),:);%Elimina ".", ".."
+    else % Solo para version online
+        FolderNames=FolderNames(1:size(FolderNames,1)-1,:);%Elimina " " que esta al final
+    end
+
+    AllData=[];
+
+    for i=1:1:size(FolderNames,1) %# de filas = # de carpetas
+        names=FindCSV(fullfile(datapath,FolderNames(i,:)));
+        %filenames=[filenames struct2table(names).name];
+    
+        if SiEsPC=="true"
+            newPath=strcat(fullfile(datapath,FolderNames(i,:)),'\');
+        else % Solo para version online
+            newPath=strcat(fullfile(datapath,FolderNames(i,:)),'/');
+        end
+
+        AllData(:,:,i)= fLoadCSV(names,newPath);
+    end
+end
