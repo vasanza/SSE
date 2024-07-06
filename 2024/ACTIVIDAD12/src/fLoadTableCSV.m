@@ -1,7 +1,7 @@
 % Function that returns Dataset Table from data folder CSV file
 % input (path): address of the folder where the data is .CSV
 % input (filenames): names of all files .CSV
-% output (Dataset): Dataset in Table format
+% output (Dataset): Dataset in table format
 % Example: 
 %   datapath=fullfile('./data/');
 %   filenames=FindCSV(datapath);
