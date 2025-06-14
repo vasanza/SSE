@@ -1,0 +1,61 @@
+% fSave_dataset Guarda una tabla en un archivo de texto con formato CSV.
+%
+% USO:
+%   fSave_dataset(filename, Data)
+%
+% ENTRADAS:
+%   - filename: Nombre del archivo (ej. 'datos.csv').
+%   - Data: Tabla de MATLAB con datos numéricos, texto o datetime.
+%
+% FUNCIONES:
+%   - Escribe encabezado con nombres de columnas.
+%   - Guarda cada fila con valores separados por comas.
+%   - Da formato a datetime y números con 6 decimales.
+%
+% EJEMPLO:
+%   fSave_file('salida.csv', miTabla);
+
+function fSave_dataset(filename, Data)
+    % Asegúrate de que 'Data' es una tabla
+    if ~istable(Data)
+        error('Input Data must be a table.');
+    end
+
+    % Abrir archivo para escritura
+    fileID = fopen(filename, 'w');
+    if fileID == -1
+        error('No se pudo abrir el archivo para escritura.');
+    end
+
+    % Escribir encabezado (nombres de las variables)
+    headers = Data.Properties.VariableNames;
+    fprintf(fileID, '%s', headers{1});
+    for i = 2:length(headers)
+        fprintf(fileID, ', %s', headers{i});
+    end
+    fprintf(fileID, '\n');
+
+    % Escribir los datos fila por fila
+    for i = 1:height(Data)
+        row = Data{i, :};  % extraer fila como array
+        for j = 1:length(row)
+            if isdatetime(row(j))
+                % Convertir datetime a string
+                fprintf(fileID, '%s', datestr(row(j), 'dd-mmm-yyyy HH:MM:SS'));
+            elseif ischar(row{j}) || isstring(row{j})
+                fprintf(fileID, '%s', row{j});
+            else
+                fprintf(fileID, '%.6f', row(j));
+            end
+
+             % Agregar coma si no es el último elemento
+            if j < length(row)
+                fprintf(fileID, ', ');
+            end
+        end
+        fprintf(fileID, '\n');
+    end
+
+    % Cerrar archivo
+    fclose(fileID);
+end
