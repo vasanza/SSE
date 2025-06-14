@@ -44,7 +44,7 @@ function fSave_dataset(filename, Data)
             val = dataCell{i, j};
 
             if isdatetime(val)
-                fprintf(fileID, '%s', datestr(val, 'dd-mmm-yyyy HH:MM:SS'));
+                fprintf(fileID, '%s', char(val));
             elseif isnumeric(val)
                 fprintf(fileID, '%.6f', val);
             elseif ischar(val) || isstring(val)

@@ -35,27 +35,30 @@ function fSave_dataset(filename, Data)
     end
     fprintf(fileID, '\n');
 
-    % Escribir los datos fila por fila
-    for i = 1:height(Data)
-        row = Data{i, :};  % extraer fila como array
-        for j = 1:length(row)
-            if isdatetime(row(j))
-                % Convertir datetime a string
-                fprintf(fileID, '%s', datestr(row(j), 'dd-mmm-yyyy HH:MM:SS'));
-            elseif ischar(row{j}) || isstring(row{j})
-                fprintf(fileID, '%s', row{j});
+    % Convertir tabla a celda para manejo seguro de tipos
+    dataCell = table2cell(Data);
+
+    % Escribir fila por fila
+    for i = 1:size(dataCell, 1)
+        for j = 1:size(dataCell, 2)
+            val = dataCell{i, j};
+
+            if isdatetime(val)
+                fprintf(fileID, '%s', char(val));
+            elseif isnumeric(val)
+                fprintf(fileID, '%.6f', val);
+            elseif ischar(val) || isstring(val)
+                fprintf(fileID, '%s', string(val));
             else
-                fprintf(fileID, '%.6f', row(j));
+                fprintf(fileID, '%s', 'NA');  % Tipo no manejado
             end
 
-             % Agregar coma si no es el último elemento
-            if j < length(row)
-                fprintf(fileID, ', ');
+            if j < size(dataCell, 2)
+                fprintf(fileID, ',');
             end
         end
-        fprintf(fileID, '\n');
+        fprintf(fileID, '\n');  % Nueva línea
     end
 
-    % Cerrar archivo
     fclose(fileID);
 end
